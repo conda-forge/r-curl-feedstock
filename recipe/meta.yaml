@@ -1,4 +1,4 @@
-{% set version = '2.4' %}
+{% set version = '3.1' %}
 
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
@@ -12,7 +12,7 @@ source:
   url:
     - https://cran.r-project.org/src/contrib/curl_{{ version }}.tar.gz
     - https://cran.r-project.org/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
-  sha256: f5121a8cc9634acdcc6018919d84adafe6142cc03f07a3d9dd90d89b23113148
+  sha256: 270f2596be50a11fe43fe63bcacbf4a4aa9c75cc6ebc0d619ac2e52e9497cb95
 
 build:
   number: 0
@@ -31,6 +31,7 @@ requirements:
 
   run:
     - r-base
+    - libgcc  # [not win]
 
 test:
   commands:
