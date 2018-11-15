@@ -62,8 +62,7 @@ about:
     web client see the 'httr' package which builds on this package with http specific
     tools and logic.
   license_family: MIT
-  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'  # [unix]
-  license_file: '{{ environ["PREFIX"] }}\R\share\licenses\MIT'  # [win]
+  license_file: '{{ environ["PREFIX"] }}/lib/R/share/licenses/MIT'
 
 extra:
   recipe-maintainers:
