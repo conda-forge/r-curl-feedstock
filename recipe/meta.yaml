@@ -1,5 +1,4 @@
-{% set version = '3.2' %}
-
+{% set version = '3.3' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -8,16 +7,14 @@ package:
   version: {{ version|replace("-", "_") }}
 
 source:
-  fn: curl_{{ version }}.tar.gz
   url:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
-  sha256: 1636aea6422a0ad81cfd2e2a1ccd7e6924cc486711fc8d7d72168230c2f11596
+  sha256: 0cb0b9a9280edc42ebed94708541ec86b4f48779e722171e45227eab8a88a5bd
 
 build:
   merge_build_host: True  # [win]
-  number: 1002
-
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
@@ -36,10 +33,8 @@ requirements:
     - {{posix}}make
     - {{posix}}coreutils         # [win]
     - {{posix}}zip               # [win]
-
   host:
     - r-base
-
   run:
     - r-base
     - {{native}}gcc-libs         # [win]
@@ -52,7 +47,6 @@ test:
 about:
   home: https://github.com/jeroen/curl#readme
   license: MIT
-  license_file: LICENSE
   summary: The curl() and curl_download() functions provide highly configurable drop-in replacements
     for base url() and download.file() with better performance, support for encryption
     (https, ftps), gzip compression, authentication, and other 'libcurl' goodies. The
@@ -66,9 +60,28 @@ about:
 
 extra:
   recipe-maintainers:
-    - johanneskoester
-    - bgruening
-    - daler
-    - jdblischak
-    - cbrueffer
-    - dbast
+    - conda-forge/r
+
+# Package: curl
+# Type: Package
+# Title: A Modern and Flexible Web Client for R
+# Version: 3.3
+# Authors@R: c( person("Jeroen", "Ooms", role = c("aut", "cre"), email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289")), person("Hadley", "Wickham", , "hadley@rstudio.com", role = "ctb"), person("RStudio", role = "cph") )
+# Description: The curl() and curl_download() functions provide highly configurable drop-in replacements for base url() and download.file() with better performance, support for encryption (https, ftps), gzip compression, authentication, and other 'libcurl' goodies. The core of the package implements a framework for performing fully customized requests where data can be processed either in memory, on disk, or streaming via the callback or connection interfaces. Some knowledge of 'libcurl' is recommended; for a more-user-friendly web client see the 'httr' package which builds on this package with http specific tools and logic.
+# License: MIT + file LICENSE
+# SystemRequirements: libcurl: libcurl-devel (rpm) or libcurl4-openssl-dev (deb).
+# URL: https://github.com/jeroen/curl#readme (devel) https://curl.haxx.se/libcurl/ (upstream)
+# BugReports: https://github.com/jeroen/curl/issues
+# Suggests: spelling, testthat (>= 1.0.0), knitr, jsonlite, rmarkdown, magrittr, httpuv (>= 1.4.4), webutils
+# VignetteBuilder: knitr
+# Depends: R (>= 3.0.0)
+# LazyData: true
+# RoxygenNote: 6.1.1
+# Encoding: UTF-8
+# Language: en-US
+# NeedsCompilation: yes
+# Packaged: 2019-01-09 22:29:50 UTC; jeroen
+# Author: Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>), Hadley Wickham [ctb], RStudio [cph]
+# Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
+# Repository: CRAN
+# Date/Publication: 2019-01-10 12:50:03 UTC
