@@ -1,4 +1,4 @@
-{% set version = '4.1' %}
+{% set version = '4.2' %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
-  sha256: f25cca2e689c4807b7f8ec1118800238da4b6511ca35680a726fc0f687a6909d
+  sha256: 97e61c932fc49869f47e31e47c34c321865f4a71ab777923e5a680b5df110276
 
 build:
   merge_build_host: True  # [win]
@@ -67,7 +67,7 @@ extra:
 # Package: curl
 # Type: Package
 # Title: A Modern and Flexible Web Client for R
-# Version: 4.1
+# Version: 4.2
 # Authors@R: c( person("Jeroen", "Ooms", role = c("aut", "cre"), email = "jeroen@berkeley.edu", comment = c(ORCID = "0000-0002-4035-0289")), person("Hadley", "Wickham", , "hadley@rstudio.com", role = "ctb"), person("RStudio", role = "cph") )
 # Description: The curl() and curl_download() functions provide highly configurable drop-in replacements for base url() and download.file() with better performance, support for encryption (https, ftps), gzip compression, authentication, and other 'libcurl' goodies. The core of the package implements a framework for performing fully customized requests where data can be processed either in memory, on disk, or streaming via the callback or connection interfaces. Some knowledge of 'libcurl' is recommended; for a more-user-friendly web client see the 'httr' package which builds on this package with http specific tools and logic.
 # License: MIT + file LICENSE
@@ -82,8 +82,8 @@ extra:
 # Encoding: UTF-8
 # Language: en-US
 # NeedsCompilation: yes
-# Packaged: 2019-09-15 18:40:16 UTC; jeroen
+# Packaged: 2019-09-24 10:59:35 UTC; jeroen
 # Author: Jeroen Ooms [aut, cre] (<https://orcid.org/0000-0002-4035-0289>), Hadley Wickham [ctb], RStudio [cph]
 # Maintainer: Jeroen Ooms <jeroen@berkeley.edu>
 # Repository: CRAN
-# Date/Publication: 2019-09-16 10:40:05 UTC
+# Date/Publication: 2019-09-24 12:20:02 UTC
