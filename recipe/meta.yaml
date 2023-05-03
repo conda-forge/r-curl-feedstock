@@ -14,7 +14,7 @@ source:
 
 build:
   merge_build_host: true  # [win]
-  number: 1
+  number: 2
   rpaths:
     - lib/R/lib/
     - lib/
@@ -36,6 +36,9 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
+    # OpenSSL is needed here to prevent conda-build from getting confused while
+    # both OpenSSL 1.1.1 and 3.0.0 and being supported
+    - openssl   # [unix]
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
