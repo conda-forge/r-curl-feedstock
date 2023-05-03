@@ -43,6 +43,7 @@ requirements:
 test:
   commands:
     - $R -e "library('curl')"           # [not win]
+    - $R -e "library('curl'); curl::curl_fetch_memory('http://rest.kegg.jp/conv/ncbi-geneid/dme')"           # [not win]
     - "\"%R%\" -e \"library('curl')\""  # [win]
 
 about:
