@@ -42,11 +42,14 @@ requirements:
     - {{ native }}gcc-libs         # [win]
 
 test:
+  requires:
+    - r-testthat
   commands:
     - $R -e "library('curl')"           # [not win]
+    - $R -e "testthat::test_package('curl')"           # [not win]
     - $R -e "library('curl'); curl::curl_fetch_memory('http://rest.kegg.jp/conv/ncbi-geneid/dme')"           # [not win]
     - "\"%R%\" -e \"library('curl')\""  # [win]
-
+    - "\"%R%\" -e \"testthat::test_package('curl')\""  # [win]
 about:
   home: https://github.com/jeroen/curl#readme
   license: MIT
