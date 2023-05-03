@@ -36,9 +36,7 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
-    # OpenSSL is needed here to prevent conda-build from getting confused while
-    # both OpenSSL 1.1.1 and 3.0.0 and being supported
-    - openssl   # [unix]
+    - libcurl   # [unix]
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
