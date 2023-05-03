@@ -36,7 +36,7 @@ requirements:
     - {{ posix }}zip               # [win]
   host:
     - r-base
-    - libcurl   # [not win]
+    - libcurl >=8   # [not win]
   run:
     - r-base
     - {{ native }}gcc-libs         # [win]
