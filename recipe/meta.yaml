@@ -48,6 +48,7 @@ test:
   requires:
     - r-httpuv
     - r-testthat
+    - r-webutils
   commands:
     - $R -e "library('curl')"                                                                 # [not win]
     - $R -e "testthat::test_package('curl')"                                                  # [not win]
