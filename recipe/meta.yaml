@@ -46,6 +46,7 @@ requirements:
 
 test:
   requires:
+    - r-httpuv
     - r-testthat
   commands:
     - $R -e "library('curl')"                                                                 # [not win]
