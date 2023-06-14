@@ -11,6 +11,8 @@ source:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
   sha256: d7f3cac9b513914ffa8f6f64e6fa5dd96c8273378ace6b0c16b71bc6ba59c9b2
+  patches:
+    - patches/0001-skip-multi-tests.patch
 
 build:
   merge_build_host: true  # [win]
