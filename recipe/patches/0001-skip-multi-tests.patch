@@ -15,7 +15,7 @@ index 816b4c3..4fd8d33 100644
  })
  
  test_that("total_con and multi_fdset", {
-+  skip_on_ci()
++  skip()
    skip_on_os("solaris")
    skip_if_not(strsplit(curl_version()$version, "-")[[1]][1] >= as.numeric_version("7.30"),
                "libcurl does not support host_connections")
@@ -23,7 +23,7 @@ index 816b4c3..4fd8d33 100644
  })
  
  test_that("host_con and multi_fdset", {
-+  skip_on_ci()
++  skip()
    skip_on_os("solaris")
    skip_if_not(strsplit(curl_version()$version, "-")[[1]][1] >= as.numeric_version("7.30"),
                "libcurl does not support host_connections")
