@@ -50,7 +50,8 @@ test:
   requires:
     - r-httpuv
     - r-testthat
-    - r-webutils
+    # this creates a circular dependency; must disable during migration
+    # - r-webutils
   source_files:
     - tests/
     - tests/testthat
