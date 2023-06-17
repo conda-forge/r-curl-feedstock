@@ -1,4 +1,4 @@
-{% set version = "5.0.0" %}
+{% set version = "5.0.1" %}
 {% set posix = 'm2-' if win else '' %}
 {% set native = 'm2w64-' if win else '' %}
 
@@ -10,15 +10,15 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
-  sha256: d7f3cac9b513914ffa8f6f64e6fa5dd96c8273378ace6b0c16b71bc6ba59c9b2
+  sha256: b7058f9cc7fa8f649505583584b61383fc08dccf746faa5381ba3d0b8bdf93a6
   patches:
     - patches/0001-skip-multi-tests.patch
     - patches/0002-skip-webutils.patch
 
 build:
   merge_build_host: true  # [win]
-  skip: true              # [win]
-  number: 1
+  skip: true  # [win]
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
