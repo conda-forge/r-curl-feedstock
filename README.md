@@ -3,6 +3,7 @@ About r-curl-feedstock
 
 Feedstock license: [BSD-3-Clause](https://github.com/conda-forge/r-curl-feedstock/blob/main/LICENSE.txt)
 
+
 About r-curl
 ------------
 
@@ -11,6 +12,7 @@ Home: https://github.com/jeroen/curl#readme
 Package license: MIT
 
 Summary: The curl() and curl_download() functions provide highly configurable drop-in replacements for base url() and download.file() with better performance, support for encryption (https, ftps), gzip compression, authentication, and other 'libcurl' goodies. The core of the package implements a framework for performing fully customized requests where data can be processed either in memory, on disk, or streaming via the callback or connection interfaces. Some knowledge of 'libcurl' is recommended; for a more-user-friendly web client see the 'httr' package which builds on this package with http specific tools and logic.
+
 About r-curl
 ------------
 
