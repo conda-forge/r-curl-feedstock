@@ -11,9 +11,6 @@ source:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
   sha256: 166b373a992eb7c880d71b2fabfc31cba6195f52f307056e8420ecc42c6d7c72
-  patches:
-    - patches/0001-skip-multi-tests.patch
-    - patches/0002-skip-webutils.patch
 
 build:
   merge_build_host: true  # [win]
@@ -51,8 +48,8 @@ test:
   requires:
     - r-httpuv
     - r-testthat
-    # this creates a circular dependency; must disable during migration
-    # - r-webutils
+    # NB: r-webutils creates a circular dependency; it should be temporarily disabled during migrations
+    - r-webutils
   source_files:
     - tests/
     - tests/testthat
