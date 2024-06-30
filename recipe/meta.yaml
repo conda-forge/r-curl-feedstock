@@ -38,11 +38,9 @@ requirements:
     - {{ posix }}zip                 # [win]
   host:
     - r-base
-    - libcurl                        # [not win]
+    - libcurl
   run:
     - r-base
-    - libwinpthread-git  # [win]
-    - zlib               # [win]
 
 test:
   requires:
