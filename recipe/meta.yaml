@@ -20,7 +20,7 @@ build:
     - lib/
   ignore_run_exports_from:
     # TODO: See below. Remove explicit dependency when workaround is not needed anymore.
-    - openssl <3.2.0a0               # [not win]
+    - openssl <3.2.0a0
 
 requirements:
   build:
@@ -41,16 +41,14 @@ requirements:
     - {{ posix }}zip                 # [win]
   host:
     - r-base
-    - libcurl                        # [not win]
+    - libcurl
     # Test below (connecting to rest.kegg.jp) triggers upstream issue described in
     # https://github.com/curl/curl/issues/13389 and https://github.com/openssl/openssl/issues/11378
     # Building against libcurl built against openssl<3.2 allows to circumvent that issue if needed.
     # TODO: Remove explicit dependency when workaround is not needed anymore.
-    - openssl <3.2.0a0               # [not win]
+    - openssl <3.2.0a0
   run:
     - r-base
-    - libwinpthread-git  # [win]
-    - zlib               # [win]
 
 test:
   requires:
