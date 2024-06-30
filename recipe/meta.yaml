@@ -1,6 +1,5 @@
 {% set version = "5.2.1" %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-curl
@@ -13,9 +12,9 @@ source:
   sha256: 4a7a4d8c08aa1bca2fcd9c58ade7b4b0ea2ed9076d0521071be29baac8adfa90
 
 build:
-  merge_build_host: true  # [win]
-  skip: true  # [win]
-  number: 0
+  # Checking windows to see if it passes. Uncomment the line if it fails.
+  # skip: true  # [win]
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -27,7 +26,9 @@ requirements:
   build:
     - cross-r-base {{ r_base }}      # [build_platform != target_platform]
     - {{ compiler('c') }}            # [not win]
+    - {{ stdlib("c") }}              # [not win]
     - {{ compiler('m2w64_c') }}      # [win]
+    - {{ stdlib("m2w64_c") }}        # [win]
     - {{ posix }}filesystem          # [win]
     - {{ posix }}sed                 # [win]
     - {{ posix }}grep                # [win]
@@ -48,9 +49,8 @@ requirements:
     - openssl <3.2.0a0               # [not win]
   run:
     - r-base
-    - {{ native }}gcc-libs           # [win]
-    - {{ native }}libwinpthread-git  # [win]
-    - {{ native }}zlib               # [win]
+    - libwinpthread-git  # [win]
+    - zlib               # [win]
 
 test:
   requires:
