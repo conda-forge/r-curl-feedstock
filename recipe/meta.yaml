@@ -1,6 +1,6 @@
 {% set version = "5.1.0" %}
+{% set build = 1 %}
 {% set posix = 'm2-' if win else '' %}
-{% set native = 'm2w64-' if win else '' %}
 
 package:
   name: r-curl
@@ -13,9 +13,7 @@ source:
   sha256: 57218da84b85bd01ce7daa4bca3e271eda1bf688e0cdb211c397ccb272ecba97
 
 build:
-  merge_build_host: true  # [win]
-  skip: true  # [win]
-  number: 0
+  number: {{ build }}
   rpaths:
     - lib/R/lib/
     - lib/
@@ -24,7 +22,9 @@ requirements:
   build:
     - cross-r-base {{ r_base }}      # [build_platform != target_platform]
     - {{ compiler('c') }}            # [not win]
+    - {{ stdlib("c") }}              # [not win]
     - {{ compiler('m2w64_c') }}      # [win]
+    - {{ stdlib("m2w64_c") }}        # [win]
     - {{ posix }}filesystem          # [win]
     - {{ posix }}sed                 # [win]
     - {{ posix }}grep                # [win]
@@ -38,27 +38,34 @@ requirements:
   host:
     - r-base
     - libcurl                        # [not win]
+    # For bundled libcurl
+    - libnghttp2                     # [win]
+    - libssh2                        # [win]
+    - krb5                           # [win]
+    - openssl                        # [win]
+    - zlib                           # [win]
   run:
     - r-base
-    - {{ native }}gcc-libs           # [win]
-    - {{ native }}libwinpthread-git  # [win]
-    - {{ native }}zlib               # [win]
 
 test:
   requires:
+{% if version != "5.1.0" or build != 1 %}  # temporarily disabled for migration
     - r-httpuv
     - r-testthat
     # NB: r-webutils creates a circular dependency; it should be temporarily disabled during migrations
     - r-webutils
+{% endif %}
   source_files:
     - tests/
     - tests/testthat
   commands:
-    - $R -e "library('curl')"                                                                 # [not win]
+    - $R -e "library('curl')"           # [not win]
+    - "\"%R%\" -e \"library('curl')\""  # [win]
+{% if version != "5.1.0" or build != 1 %}  # temporarily disabled for migration
     - $R -e "testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)"                   # [not win]
     - $R -e "invisible(curl::curl_fetch_memory('http://rest.kegg.jp/conv/ncbi-geneid/dme'))"  # [not win]
-    - "\"%R%\" -e \"library('curl')\""                                                 # [win]
     - "\"%R%\" -e \"testthat::test_file('tests/testthat.R')\""  # [win]
+{% endif %}
 about:
   home: https://github.com/jeroen/curl#readme
   license: MIT
