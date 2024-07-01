@@ -43,12 +43,9 @@ requirements:
     - libssh2                        # [win]
     - krb5                           # [win]
     - openssl                        # [win]
-    - winpthreads                    # [win]
     - zlib                           # [win]
   run:
     - r-base
-    # For bundled libcurl
-    - libwinpthread                  # [win]
 
 test:
   requires:
