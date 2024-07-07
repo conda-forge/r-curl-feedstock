@@ -19,6 +19,9 @@ build:
   rpaths:
     - lib/R/lib/
     - lib/
+  ignore_run_exports_from:
+    # TODO: See below. Remove explicit dependency when workaround is not needed anymore.
+    - openssl <3.2.0a0               # [not win]
 
 requirements:
   build:
@@ -38,6 +41,11 @@ requirements:
   host:
     - r-base
     - libcurl                        # [not win]
+    # Test below (connecting to rest.kegg.jp) triggers upstream issue described in
+    # https://github.com/curl/curl/issues/13389 and https://github.com/openssl/openssl/issues/11378
+    # Building against libcurl built against openssl<3.2 allows to circumvent that issue if needed.
+    # TODO: Remove explicit dependency when workaround is not needed anymore.
+    - openssl <3.2.0a0               # [not win]
   run:
     - r-base
     - {{ native }}gcc-libs           # [win]
@@ -50,6 +58,8 @@ test:
     - r-testthat
     # NB: r-webutils creates a circular dependency; it should be temporarily disabled during migrations
     - r-webutils
+    # TODO: See above. Remove explicit dependency when is workaround not needed anymore.
+    - openssl <3.2.0a0
   source_files:
     - tests/
     - tests/testthat
