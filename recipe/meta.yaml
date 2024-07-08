@@ -52,7 +52,7 @@ requirements:
 
 test:
   requires:
-{% if version != "5.2.1" or build != 1 and (win or r_base == "4.4") %}  # temporarily disabled for migration
+{% if version != "5.2.1" or build != 1 or (not win and r_base != "4.4") %}  # temporarily disabled for migration
     - r-httpuv
     - r-testthat
     # NB: r-webutils creates a circular dependency; it should be temporarily disabled during migrations
@@ -65,7 +65,7 @@ test:
     - tests/testthat
   commands:
     - R -e "library('curl');data.frame(curl_options())"
-{% if version != "5.2.1" or build != 1 and (win or r_base == "4.4") %}  # temporarily disabled for migration
+{% if version != "5.2.1" or build != 1 or (not win and r_base != "4.4") %}  # temporarily disabled for migration
     - R -e "testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)"
     # skip for unix and r_base == "4.4" because r-base=4.4 is built against newer libcurl with openssl>=3.3 dep.
     - R -e "invisible(curl::curl_fetch_memory('http://rest.kegg.jp/conv/ncbi-geneid/dme'))"  # [not unix or r_base != "4.4"]
