@@ -1,8 +1,7 @@
-copy /y configure configure.win || exit 1
-copy /y src\Makevars.in src\Makevars.win || exit 1
-(
-echo=INCLUDE_DIR=%LIBRARY_INC:\=/%
-echo=LIB_DIR=%LIBRARY_LIB:\=/%
-) > .Renviron
+sed < configure ^
+    -e "1 a\INCLUDE_DIR='%LIBRARY_INC:\=/%'" ^
+    -e "1 a\LIB_DIR='%LIBRARY_LIB:\=/%'" ^
+    -e "s|> src/Makevars|&.win|" ^
+    > configure.win
 "%R%" CMD INSTALL --build .
 IF %ERRORLEVEL% NEQ 0 exit 1
