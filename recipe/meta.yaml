@@ -41,6 +41,7 @@ requirements:
   host:
     - r-base
     - libcurl
+    - libnghttp2                     # [win]
     # Test below (connecting to rest.kegg.jp) triggers upstream issue described in
     # https://github.com/curl/curl/issues/13389 and https://github.com/openssl/openssl/issues/11378
     # Building against libcurl built against openssl<3.2 allows to circumvent that issue if needed.
