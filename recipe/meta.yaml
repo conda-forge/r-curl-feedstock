@@ -64,7 +64,7 @@ test:
     - tests/
     - tests/testthat
   commands:
-    - R -e "library('curl')"
+    - R -e "library('curl');data.frame(curl_options())"
 {% if version != "5.2.1" or build != 1 and (win or r_base == "4.4") %}  # temporarily disabled for migration
     - R -e "testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)"
     # skip for unix and r_base == "4.4" because r-base=4.4 is built against newer libcurl with openssl>=3.3 dep.
