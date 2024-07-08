@@ -1,3 +1,4 @@
+:: Link against libcurl package instead of statically bundling it.
 sed -i src/Makevars.win ^
     -e "/TARGET/d" ^
     -e "/winlibs\.R/d" ^
