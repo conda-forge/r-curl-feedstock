@@ -1,7 +1,8 @@
-sed < configure ^
-    -e "1 a\INCLUDE_DIR='%LIBRARY_INC:\=/%'" ^
-    -e "1 a\LIB_DIR='%LIBRARY_LIB:\=/%'" ^
-    -e "s|> src/Makevars|&.win|" ^
-    > configure.win
+sed -i src/Makevars.win ^
+    -e "/TARGET/d" ^
+    -e "/winlibs\.R/d" ^
+    -e "s|-L\S*RWINLIB\S*|-L%LIBRARY_LIB:\=/%|g" ^
+    -e "s|-I\S*RWINLIB\S*|-I%LIBRARY_INC:\=/%|g" ^
+    -e "s|-DCURL_STATICLIB\s*||g"
 "%R%" CMD INSTALL --build .
 IF %ERRORLEVEL% NEQ 0 exit 1
