@@ -1,5 +1,5 @@
-{% set version = "5.2.1" %}
-{% set build = 1 %}
+{% set version = "6.0.0" %}
+{% set build = 0 %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -10,7 +10,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
-  sha256: 4a7a4d8c08aa1bca2fcd9c58ade7b4b0ea2ed9076d0521071be29baac8adfa90
+  sha256: cfd42e3c5cd10c1dfe1b494cd9b50267a4cca82854253060d613186d1ec7a2cb
 
 build:
   number: {{ build }}
