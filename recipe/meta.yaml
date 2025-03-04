@@ -1,5 +1,4 @@
 {% set version = "6.2.1" %}
-{% set build = 0 %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -11,15 +10,21 @@ source:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
   sha256: 4ab821ddc8fba46e540a1d3139935a2fcbe4dcfa4d8ec1e15874dde044459bcf
+  patches:
+    - patches/0001-min-win-libs.patch
 
 build:
-  number: {{ build }}
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
   ignore_run_exports_from:
     # TODO: See below. Remove explicit dependency when workaround is not needed anymore.
     - openssl <3.2.0a0  # [unix and r_base != "4.4"]
+  missing_dso_whitelist:
+    - '*/R.dll'        # [win]
+    - '*/Rblas.dll'    # [win]
+    - '*/Rlapack.dll'  # [win]
 
 requirements:
   build:
