@@ -1,6 +1,6 @@
-From 862c3dc80ce2ffab6b41154fdd2b3a95f3eef787 Mon Sep 17 00:00:00 2001
+From a210c779c8c1ae7931c43af6b8c70f2efcb6900c Mon Sep 17 00:00:00 2001
 From: Mervin Fansler <mervin.fansler@bric.ku.dk>
-Date: Tue, 4 Mar 2025 09:59:59 +0100
+Date: Tue, 4 Mar 2025 10:18:51 +0100
 Subject: [PATCH] min win libs
 
 ---
@@ -8,7 +8,7 @@ Subject: [PATCH] min win libs
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/src/Makevars.win b/src/Makevars.win
-index 91d9397..b0fc1b7 100644
+index 91d9397..f87dfe1 100644
 --- a/src/Makevars.win
 +++ b/src/Makevars.win
 @@ -4,7 +4,7 @@ TARGET = lib$(subst gcc,,$(COMPILED_BY))$(R_ARCH)
@@ -16,7 +16,7 @@ index 91d9397..b0fc1b7 100644
  	-L$(RWINLIB)/$(TARGET) \
  	-L$(RWINLIB)/lib \
 -	-lwinhttp -lcurl -lnghttp2 -lssh2 -lz -lssl -lcrypto -pthread -lgdi32 -lws2_32 -lcrypt32 -lbcrypt -lwldap32
-+	-lcurl -pthread
++	-lwinhttp -lcurl -pthread -lws2_32
  
  PKG_CPPFLAGS= \
  	-I$(RWINLIB)/include -DCURL_STATICLIB -DSTRICT_R_HEADERS -DR_NO_REMAP
