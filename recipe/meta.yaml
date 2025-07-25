@@ -1,4 +1,4 @@
-{% set version = "6.2.2" %}
+{% set version = "6.4.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,7 +9,7 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
-  sha256: ad17ddb072cfb8eac5b309824a637e79274747c7f2779f248191f2e1d276dc39
+  sha256: 3bb4dbf892d2c3b4449d67553f2b3b31d9fa23c71fa6af0a287930ae8377ecdb
   patches:
     - patches/0001-min-win-libs.patch
 
@@ -54,6 +54,8 @@ requirements:
     - openssl <3.2.0a0  # [unix and r_base != "4.4"]
   run:
     - r-base
+  run_constrained:
+    - libstdcxx !=14.3.0,!=15.1.0           # [win]
 
 test:
   requires:
