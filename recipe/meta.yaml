@@ -1,4 +1,4 @@
-{% set version = "6.4.0" %}
+{% set version = "7.0.0" %}
 {% set posix = 'm2-' if win else '' %}
 
 package:
@@ -9,12 +9,12 @@ source:
   url:
     - {{ cran_mirror }}/src/contrib/curl_{{ version }}.tar.gz
     - {{ cran_mirror }}/src/contrib/Archive/curl/curl_{{ version }}.tar.gz
-  sha256: 3bb4dbf892d2c3b4449d67553f2b3b31d9fa23c71fa6af0a287930ae8377ecdb
+  sha256: 5b1633be7bc0ea796e2df5b24b2aec937a17359f2d86207359aa553328824d6b
   patches:
     - patches/0001-min-win-libs.patch
 
 build:
-  number: 1
+  number: 0
   rpaths:
     - lib/R/lib/
     - lib/
