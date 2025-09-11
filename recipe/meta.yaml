@@ -14,7 +14,7 @@ source:
     - patches/0001-min-win-libs.patch
 
 build:
-  number: 0
+  number: 1
   rpaths:
     - lib/R/lib/
     - lib/
@@ -47,11 +47,6 @@ requirements:
     - r-base
     - libcurl
     - libnghttp2                     # [win]
-    # Test below (connecting to rest.kegg.jp) triggers upstream issue described in
-    # https://github.com/curl/curl/issues/13389 and https://github.com/openssl/openssl/issues/11378
-    # Building against libcurl built against openssl<3.2 allows to circumvent that issue if needed.
-    # TODO: Remove explicit dependency when workaround is not needed anymore.
-    - openssl <3.2.0a0  # [unix and r_base != "4.4"]
   run:
     - r-base
 
@@ -59,9 +54,8 @@ test:
   requires:
     - r-httpuv
     - r-testthat
-    - r-webutils
-    # TODO: See above. Remove explicit dependency when is workaround not needed anymore.
-    - openssl <3.2.0a0  # [unix and r_base != "4.4"]
+    # NB: r-webutils depends on r-curl, so exclude it during migrations
+    # - r-webutils
   source_files:
     - tests/
     - tests/testthat
@@ -70,8 +64,6 @@ test:
     - R -e "testthat::test_file('tests/testthat.R', stop_on_failure=TRUE)"   # [not win]
     # NB: A couple inconsequential tests failed in the past. Please diligently review logs.
     - R -e "testthat::test_file('tests/testthat.R', stop_on_failure=FALSE)"  # [win]
-    # skip for win or r_base == "4.4" because all win and r-base=4.4 build against newer libcurl with openssl>=3.3 dep.
-    - R -e "invisible(curl::curl_fetch_memory('http://rest.kegg.jp/conv/ncbi-geneid/dme'))"  # [unix and r_base != "4.4"]
 about:
   home: https://github.com/jeroen/curl#readme
   license: MIT
